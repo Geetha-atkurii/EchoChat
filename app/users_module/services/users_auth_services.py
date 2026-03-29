@@ -12,6 +12,9 @@ class UserAuthService:
 
         email = user.email.lower()
 
+        if user.password != user.confirm_password:
+            raise HTTPException(status_code=StatusCodes.BAD_REQUEST, detail=Messages.CONFIRM_PASSWORD_VALIDATION_ERROR)
+
         if UserDAO.get_user_by_email(db, email):
             raise HTTPException(
                 status_code=StatusCodes.BAD_REQUEST,
@@ -23,6 +26,11 @@ class UserAuthService:
                 status_code=StatusCodes.BAD_REQUEST,
                 detail=Messages.USERNAME_ALREADY_EXISTS
             )
+
+        try:
+            UserAuthUtils.validate_password(user.password)
+        except ValueError as e:
+            raise HTTPException(status_code=StatusCodes.BAD_REQUEST, detail=str(e))
 
         hashed_password = UserAuthUtils.hash_password(user.password)
         user_id = UserAuthUtils.generate_user_id()
@@ -36,9 +44,9 @@ class UserAuthService:
             "updated_at": datetime.utcnow(),
             "created_by": user_id,
             "updated_by": user_id,
-            "is_active": 1,
-            "is_deleted": 0,
-            "is_email_verified": 0
+            "is_active": False,
+            "is_deleted": False,
+            "is_email_verified": False
         }
 
         user_obj = UserDAO.create_user(db, user_data)
