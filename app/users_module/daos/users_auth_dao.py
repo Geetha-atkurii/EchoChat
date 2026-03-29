@@ -11,14 +11,14 @@ class UserDAO:
     def get_user_by_email(db: Session, email: str):
         return db.query(User).filter(
             User.email == email,
-            User.is_deleted == 0
+            User.is_deleted == False
         ).first()
 
     @staticmethod
     def get_user_by_username(db: Session, username: str):
         return db.query(User).filter(
             User.username == username,
-            User.is_deleted == 0
+            User.is_deleted == False
         ).first()
 
     @staticmethod

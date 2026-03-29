@@ -15,7 +15,9 @@ class UserBase(BaseModel):
 class UserCreate(BaseModel):
     email: EmailStr
     username: str
+    phone: str
     password: str
+    confirm_password: str
 
 
 class UserUpdate(BaseModel):
@@ -39,16 +41,16 @@ class UserResponse(BaseModel):
     phone: Optional[str]
     last_seen: Optional[datetime]
     last_login_at: Optional[datetime]
-    is_online: Optional[int]
+    is_online: Optional[bool]
     password_updated_at: Optional[datetime]
     profile_updated_at: Optional[datetime]
     created_at: datetime
     updated_at: datetime
     created_by: Optional[int]
     updated_by: Optional[int]
-    is_active: Optional[int]
-    is_email_verified: Optional[int]
-    is_deleted: Optional[int]
+    is_active: Optional[bool]
+    is_email_verified: Optional[bool]
+    is_deleted: Optional[bool]
 
     class Config:
         from_attributes = True
