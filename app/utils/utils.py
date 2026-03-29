@@ -23,3 +23,7 @@ class UserAuthUtils:
                 "Password must be atleast 8-16 chars, including atleast one uppercase, lowercase, number, and a special character."
             )
         return True
+    
+    @staticmethod
+    def verify_password(plain_password: str, hashed_password: str):
+        return pwd_context.verify(plain_password, hashed_password)

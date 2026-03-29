@@ -10,10 +10,12 @@ class StatusCodes:
 class Messages:
     USER_CREATED = "User registered successfully."
     LOGIN_SUCCESS = "Login successful."
+    USER_PROFILE_FETCHED = "User profile fetched successfully."
     INVALID_CREDENTIALS = "Invalid email or password."
     USER_ALREADY_EXISTS = "Email already registered."
     USER_NOT_FOUND = "User not found."
     USER_UPDATED = "User profile updated successfully."
     INTERNAL_SERVER_ERROR = "Something went wrong. Please try again later."
     USERNAME_ALREADY_EXISTS = "Username already taken. Please choose another one."
+    PHONE_ALREADY_EXISTS = "Phone number already exists."
     CONFIRM_PASSWORD_VALIDATION_ERROR = "Password and Confirm Password should match."

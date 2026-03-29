@@ -31,7 +31,6 @@ class UserUpdate(BaseModel):
 
 
 class UserResponse(BaseModel):
-    id: int
     user_id: str
     email: str
     username: str
@@ -46,10 +45,11 @@ class UserResponse(BaseModel):
     profile_updated_at: Optional[datetime]
     created_at: datetime
     updated_at: datetime
-    created_by: Optional[int]
-    updated_by: Optional[int]
+    created_by: Optional[str]
+    updated_by: Optional[str]
     is_active: Optional[bool]
     is_email_verified: Optional[bool]
+    is_phone_verified: Optional[bool]
     is_deleted: Optional[bool]
 
     class Config:
@@ -57,7 +57,7 @@ class UserResponse(BaseModel):
 
 
 class UserLogin(BaseModel):
-    email: EmailStr
+    login_id: str
     password: str
 
 
